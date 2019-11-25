@@ -13,6 +13,7 @@ from imagekit.processors import ResizeToFit
 class User(AbstractUser):
     nickname = models.Charfield(max_length=30)
     like_genres = models.ManyToManyField(Genre, related_name='like_users')
+    introduction = models.TextField()
 
 class Chatroom(models.Model):
     name = models.Charfield(max_length=200)
