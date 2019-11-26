@@ -12,7 +12,7 @@
             <p>({{user_info.username}})</p>
             <!-- 팔로우 버튼, 게시물수, 팔로우 수, 자기소개 등이 들어올 공간 -->
             {% if user == user_info %}
-                <a href="#" class="btn btn-light mx-3">프로필 편집</a>
+                <a href="{% url 'accounts:edit_user_page' user_info.id %}" class="btn btn-light mx-3">프로필 편집</a>
             {% endif %}
         </div>
         {% comment %} <div class="row d-flex justify-content-between">

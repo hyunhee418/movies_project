@@ -55,6 +55,24 @@ def user_page(request, user_id):
         'user_info' :user,
     })
 
+@require_http_methods(['GET', 'POST'])
+def edit_user_page(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.method == "POST":
+        # form = ArticleModelForm(request.POST) 이렇게 쓰면 새종이에 데이터 쓰는 것이고 instance=article 하면 있는 데이터에 덮어써서 수정하는 것
+        form = CustomUserCreationForm(request.POST, instance=user) # 사용자가 '새로 입력한 데이터'를 미리 만들어둔 case에 넣음
+        if form.is_valid():
+            user = form.save()
+            return redirect('movies:user_page', user_id)
+    # 사용자가 수정하기 위한 html 파일을 요청함/ 있던 데이터를 찾아서 html에 넣어서 보내줌
+    else:        
+        form = CustomUserCreationForm(instance=user)
+    # 위와 겹치므로 한칸 앞으로 가서 코드 간단히 해줌
+    return render(request, 'accounts/user_form.html', {
+        'form':form,
+    })
+    
+
 def test(request):
     movies = Movie.objects.all()[50:141]
     return render(request, 'accounts/choice.html', {

@@ -10,4 +10,5 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('checked/', views.checked, name='checked'),
     path('user_page/<int:user_id>/', views.user_page, name='user_page'),
+    path('user_page/<int:user_id>/edit/', views.edit_user_page, name='edit_user_page'),
 ]
