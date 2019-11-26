@@ -91,6 +91,6 @@ for code in code_li:
     print(description)
     # print(MovieCd, movieName, movieNameE, pubDate, runtime, genre, director, userRating, poster_url, description)
     writer1.writerow([num, code, movieName, movieNameE, pubDate, runtime, director, userRating, poster_url, description]) 
-    writer2.writerow([num, movie_id, genre_id])
+    writer2.writerow([num, genre_id,movie_id])
     num+=1
     movie_id+=1
