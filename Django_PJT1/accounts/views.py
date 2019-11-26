@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomAuthenticationForm, CustomUserCreationForm
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
-from movies.models import Movie
+from movies.models import Movie,Genre
 User = get_user_model()
 
 @require_http_methods(['GET', 'POST'])
@@ -79,9 +80,25 @@ def test(request):
         'movies':movies
     })
 
+@login_required
 def checked(request):
     if request.method == "POST":
-        checked_list = request.POST.get('checked_data')
-        print('--------------------')
-        print(checked_list)
+        genre = [0]*28
+        checked_list = request.POST.getlist('checked_data')
+        user = request.user
+        for i in checked_list:
+            genre[int(i)] += 1
+        max_point1, max_idd1, max_point2, max_idd2 = 0, 0, 0, 0
+        for j in range(28):
+            if max_point1 < genre[j]:
+                max_point1 = genre[j]
+                max_idd1 = j
+            else:
+                if max_point2 < genre[j]:
+                    max_point2 = genre[j]
+                    max_idd2 = j
+        genre1 = get_object_or_404(Genre, id=max_idd1)
+        genre2 = get_object_or_404(Genre, id=max_idd2)
+        user.like_genres.add(genre1)
+        user.like_genres.add(genre2)
         return redirect('movies:movie_list')

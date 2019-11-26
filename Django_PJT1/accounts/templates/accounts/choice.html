@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>좋아하는 영화 5 개를 고르세요.</h1>
+<h1>좋아하는 영화 10 개를 고르세요.</h1>
 <form action="{% url 'accounts:checked' %}" method="POST" class="card-columns">
     {% csrf_token %}
     {% for movie in movies %}
