@@ -38,11 +38,21 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Movie_has_genre',
+            name='MovieHasGenre',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('genre', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='movies.Genre')),
+                ('genre', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='movie_genre', to='movies.Genre')),
+                ('movie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='movie_genre', to='movies.Movie')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Comment',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('content', models.CharField(max_length=150)),
+                ('score', models.IntegerField()),
                 ('movie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='movies.Movie')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(

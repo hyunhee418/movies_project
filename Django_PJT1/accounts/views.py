@@ -3,6 +3,7 @@ from .forms import CustomAuthenticationForm, CustomUserCreationForm
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
+from movies.models import Movie
 User = get_user_model()
 
 @require_http_methods(['GET', 'POST'])
@@ -15,7 +16,10 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            return render(request, 'accounts/choice.html')
+            movies = Movie.objects.all()[50:141]
+            return render(request, 'accounts/choice.html', {
+                'movies':movies
+            })
 
     else:
         form = CustomUserCreationForm()
@@ -50,3 +54,16 @@ def user_page(request, user_id):
     return render(request, 'accounts/user_page.html', {
         'user_info' :user,
     })
+
+def test(request):
+    movies = Movie.objects.all()[50:141]
+    return render(request, 'accounts/choice.html', {
+        'movies':movies
+    })
+
+def checked(request):
+    if request.method == "POST":
+        checked_list = request.POST.get('checked_data')
+        print('--------------------')
+        print(checked_list)
+        return redirect('movies:movie_list')
