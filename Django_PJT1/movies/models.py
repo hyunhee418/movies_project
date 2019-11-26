@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth import get_user_model
 # User = get_user_model()
@@ -18,10 +19,15 @@ class Movie(models.Model):
     userRating = models.FloatField()
     poster_url = models.CharField(max_length=140)
     description = models.TextField()
+    like_users = models.ManyToManyField(User, related_name='like_movies')
+    
+    def get_absolute_url(self):
+        return reverse('movies:movie_detail', kwargs={'movie_id': self.id})
 
 class Movie_has_genre(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='movie_genre')
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='movie_genre')
+    
 # class Movie(models.Model):
 #     title = models.CharField(max_length=30)
 #     audience = models.IntegerField()

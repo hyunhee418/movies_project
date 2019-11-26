@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class='row my-5 mx-auto'>
+    <div class="col-4 d-flex justify-content-center">
+        <!-- 프로필이미지가 들어올공간 -->
+        <!-- 이미지 없으면 기본이미지 사용 -->
+        <img src="https://picsum.photos/100/100" alt="random-image" class="rounded-circle">
+    </div>
+    <div class="col-5">
+        <div class="row">
+            <h2>{{user_info.nickname}}</h2>
+            <p>({{user_info.username}})</p>
+            <!-- 팔로우 버튼, 게시물수, 팔로우 수, 자기소개 등이 들어올 공간 -->
+            {% if user == user_info %}
+                <a href="#" class="btn btn-light mx-3">프로필 편집</a>
+            {% endif %}
+        </div>
+        {% comment %} <div class="row d-flex justify-content-between">
+            <h4>게시물 {{user_info.postings.count}}</h4>
+        </div> {% endcomment %}
+        <div class="row">
+            <p>이 유저는 {}와 {} 장르 영화를 좋아합니다.</p>            
+        </div>        
+    </div>
+</div>
+{% comment %} <div class="card-columns">
+    {% for posting in user_info.postings.all %}
+        {% include 'postings/_posting.html' %}
+    {% endfor %}    
+</div> {% endcomment %}
+<div class="container">
+    <h4>자기소개</h4>
+    <p>{{ user_info.introduction }}</p>
+<div>
+
+<div>
+    <h4>좋아요 누른 영화</h4>
+    <p>여기에 캐러셀 들어갈 것임</p>
+<div>
+
+<div>
+    <h4>{{user_info.nickname}}님이 남긴 영화리뷰</h4>
+    <p>여기에서는 영화이름이랑 코멘트 내용이 들어가고 그 영화 디테일 페이지로 이동 a태그</p>
+<div>
+
+{% endblock %}

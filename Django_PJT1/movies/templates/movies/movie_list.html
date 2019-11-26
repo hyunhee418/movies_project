@@ -1,4 +1,4 @@
-{% extends 'movie/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Movie list
 {% endblock %}
@@ -12,11 +12,10 @@
 {% if movies %}
     <ul>
         {% for movie in movies %}
-            <li>{{ movie.movieName }}</a>  평점: {{ movie.userRating }}</li>
-            {% comment %} <li>
-                <a href="{% url 'cinema:movie_detail' movie.id %}">
-                    {{ movie.title }}</a>  평점: {{ movie.score }}
-            </li> {% endcomment %}
+            <li>
+                <a href="{% url 'movies:movie_detail' movie.id %}">
+                    {{ movie.movieName }}</a>  평점: {{ movie.userRating }}
+            </li>
         {% endfor %}
     </ul>
 {% endif %}

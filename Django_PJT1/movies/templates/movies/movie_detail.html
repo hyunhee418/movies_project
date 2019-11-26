@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>{{ movie.movieName }}</h1>
+    {% comment %} <form action="{% url 'movies:like' movie.id %}" method="POST">
+        {% csrf_token %}
+        <button>
+            {% if is_like %}좋아요취소{% else %}좋아요{% endif %}
+        </button>
+    </form> {% endcomment %}
+    {% comment %} <p>{{ movie.like_users.count }}명이 좋아합니다</p> {% endcomment %}
+    {% comment %} <p><b> 관객수 : </b> {{ movie.audience }} 명</p> {% endcomment %}
+    <p><b> 장르 : </b> {{ genre.name }}</p>
+    <img src="{{ movie.poster_url }}" alt="poster" height="200">
+    <h3>줄거리</h3>
+    <p>{{ movie.description }}</p>
+    <hr>
+    {% comment %} {% include 'movies/_review.html' %} {% endcomment %}
+
+
+{% endblock body %}

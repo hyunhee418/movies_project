@@ -19,7 +19,7 @@ def signup(request):
 
     else:
         form = CustomUserCreationForm()
-    return render(request, 'accounts/signup.html', {
+    return render(request, 'accounts/user_form.html', {
         'form':form
     })
 
@@ -35,12 +35,12 @@ def login(request):
 
     else:
         form = CustomAuthenticationForm()
-    return render(request, 'accounts/login.html', {
+    return render(request, 'accounts/user_form.html', {
         'form':form,
     })
 
 def logout(request):
-    auth_login(request)
+    auth_logout(request)
     return redirect('movies:movie_list')
 
 
