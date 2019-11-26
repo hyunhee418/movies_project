@@ -19,9 +19,9 @@ class Movie(models.Model):
     poster_url = models.CharField(max_length=140)
     description = models.TextField()
 
-class Movie_has_genre(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+class MovieHasGenre(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='movie_genre')
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='movie_genre')
 # class Movie(models.Model):
 #     title = models.CharField(max_length=30)
 #     audience = models.IntegerField()
