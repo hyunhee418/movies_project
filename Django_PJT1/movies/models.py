@@ -14,34 +14,14 @@ class Movie(models.Model):
     movieNameE = models.CharField(max_length=30)
     pubDate = models.IntegerField()
     runtime = models.CharField(max_length=200)
-    # genre = models.ManyToManyField(Genre, related_name='genre_movies') # 여기가 변경사항
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='movie_genre') # 여기가 변경사항
     director = models.CharField(max_length=200)
     userRating = models.FloatField()
     poster_url = models.CharField(max_length=140)
     description = models.TextField()
     like_users = models.ManyToManyField(User, related_name='like_movies')
-    
-    def get_absolute_url(self):
-        return reverse('movies:movie_detail', kwargs={'movie_id': self.id})
 
-class MovieHasGenre(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='movie_genre')
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='movie_genre')
-# class Movie(models.Model):
-#     title = models.CharField(max_length=30)
-#     audience = models.IntegerField()
-#     poster_url = models.CharField(max_length=140)
-#     description = models.TextField()
-#     movie_genres = models.ManyToManyField(Genre, related_name='genre_movies')
-#     like_users = models.ManyToManyField(User, related_name='like_movies')
-    
-# class Review(models.Model):
-#     content = models.CharField(max_length=140)
-#     score = models.IntegerField()
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-
-class Comment(models.Model):
+class Review(models.Model):
     content = models.CharField(max_length=150)
     score = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
