@@ -7,7 +7,6 @@ User = settings.AUTH_USER_MODEL
 
 class Genre(models.Model):
     name = models.CharField(max_length=20)
-
 class Movie(models.Model):
     MovieCd = models.IntegerField()
     movieName = models.CharField(max_length=30)
@@ -20,7 +19,7 @@ class Movie(models.Model):
     poster_url = models.CharField(max_length=140)
     description = models.TextField()
     like_users = models.ManyToManyField(User, related_name='like_movies')
-
+    
 class Review(models.Model):
     content = models.CharField(max_length=150)
     score = models.IntegerField()

@@ -15,6 +15,17 @@
     <p>{{ movie.description }}</p>
     <hr>
     {% comment %} {% include 'movies/_review.html' %} {% endcomment %}
-
+    <form action="{% url 'movies:like' movie.id %}" method="POST">
+        {% csrf_token %}
+        <button style="border:0; background:none;">
+                {% if is_like %}
+                    <i class="fas fa-heart fa-lg" style="color: #ed4956;"></i>			
+                {% else %}
+                    <i class="far fa-heart fa-lg" style="color: #ed4956; border:10;">
+                        <span class="badge badge-light"></span>
+                    </i>	
+                {% endif %}
+        </button>
+    </form>
 
 {% endblock body %}

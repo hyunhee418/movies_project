@@ -1,8 +1,8 @@
 [{
         "pk": 1,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "171539",
+            "MovieCd": "171539",
             "movieName": "그린 북",
             "movieNameE": "Green Book",
             "pubDate": "2018",
@@ -16,9 +16,9 @@
     },
     {
         "pk": 2,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "174830",
+            "MovieCd": "174830",
             "movieName": "가버나움",
             "movieNameE": "Capharnaum,  Capernaum",
             "pubDate": "2018",
@@ -32,9 +32,9 @@
     },
     {
         "pk": 3,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "144906",
+            "MovieCd": "144906",
             "movieName": "베일리 어게인",
             "movieNameE": "A Dog's Purpose",
             "pubDate": "2017",
@@ -48,9 +48,9 @@
     },
     {
         "pk": 4,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "169240",
+            "MovieCd": "169240",
             "movieName": "아일라",
             "movieNameE": "Ayla: The Daughter of War",
             "pubDate": "2017",
@@ -64,9 +64,9 @@
     },
     {
         "pk": 5,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "179518",
+            "MovieCd": "179518",
             "movieName": "주전장",
             "movieNameE": "主戰場,  Shusenjo: The Main Battleground of Comfort Women Issue",
             "pubDate": "2018",
@@ -80,9 +80,9 @@
     },
     {
         "pk": 6,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "151196",
+            "MovieCd": "151196",
             "movieName": "원더",
             "movieNameE": "Wonder",
             "pubDate": "2017",
@@ -96,9 +96,9 @@
     },
     {
         "pk": 7,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "157243",
+            "MovieCd": "157243",
             "movieName": "당갈",
             "movieNameE": "Dangal",
             "pubDate": "2016",
@@ -112,9 +112,9 @@
     },
     {
         "pk": 8,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "17421",
+            "MovieCd": "17421",
             "movieName": "쇼생크 탈출",
             "movieNameE": "The Shawshank Redemption",
             "pubDate": "1994",
@@ -128,9 +128,9 @@
     },
     {
         "pk": 9,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "10200",
+            "MovieCd": "10200",
             "movieName": "터미네이터 2:오리지널",
             "movieNameE": "Terminator 2: Judgment Day",
             "pubDate": "1991",
@@ -144,9 +144,9 @@
     },
     {
         "pk": 10,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "156464",
+            "MovieCd": "156464",
             "movieName": "보헤미안 랩소디",
             "movieNameE": "Bohemian Rhapsody",
             "pubDate": "2018",
@@ -160,9 +160,9 @@
     },
     {
         "pk": 11,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "154667",
+            "MovieCd": "154667",
             "movieName": "덕구",
             "movieNameE": "Stand by me",
             "pubDate": "2017",
@@ -176,9 +176,9 @@
     },
     {
         "pk": 12,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "69105",
+            "MovieCd": "69105",
             "movieName": "월-E",
             "movieNameE": "WALL-E",
             "pubDate": "2008",
@@ -192,9 +192,9 @@
     },
     {
         "pk": 13,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "10016",
+            "MovieCd": "10016",
             "movieName": "나 홀로 집에",
             "movieNameE": "Home Alone",
             "pubDate": "1990",
@@ -208,9 +208,9 @@
     },
     {
         "pk": 14,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "22126",
+            "MovieCd": "22126",
             "movieName": "인생은 아름다워",
             "movieNameE": "La Vita E Bella,  Life Is Beautiful",
             "pubDate": "1997",
@@ -224,9 +224,9 @@
     },
     {
         "pk": 15,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "10002",
+            "MovieCd": "10002",
             "movieName": "빽 투 더 퓨쳐",
             "movieNameE": "Back To The Future",
             "pubDate": "1985",
@@ -240,9 +240,9 @@
     },
     {
         "pk": 16,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "35901",
+            "MovieCd": "35901",
             "movieName": "살인의 추억",
             "movieNameE": "Memories Of Murder",
             "pubDate": "2003",
@@ -256,9 +256,9 @@
     },
     {
         "pk": 17,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "18988",
+            "MovieCd": "18988",
             "movieName": "라이언 일병 구하기",
             "movieNameE": "Saving Private Ryan",
             "pubDate": "1998",
@@ -272,9 +272,9 @@
     },
     {
         "pk": 18,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "24452",
+            "MovieCd": "24452",
             "movieName": "매트릭스",
             "movieNameE": "The Matrix",
             "pubDate": "1999",
@@ -288,9 +288,9 @@
     },
     {
         "pk": 19,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "17159",
+            "MovieCd": "17159",
             "movieName": "포레스트 검프",
             "movieNameE": "Forrest Gump",
             "pubDate": "1994",
@@ -304,9 +304,9 @@
     },
     {
         "pk": 20,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "82432",
+            "MovieCd": "82432",
             "movieName": "헬프",
             "movieNameE": "The Help",
             "pubDate": "2011",
@@ -320,9 +320,9 @@
     },
     {
         "pk": 21,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "10102",
+            "MovieCd": "10102",
             "movieName": "사운드 오브 뮤직",
             "movieNameE": "The Sound Of Music",
             "pubDate": "1965",
@@ -336,9 +336,9 @@
     },
     {
         "pk": 22,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "29217",
+            "MovieCd": "29217",
             "movieName": "글래디에이터",
             "movieNameE": "Gladiator",
             "pubDate": "2000",
@@ -352,9 +352,9 @@
     },
     {
         "pk": 23,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "163788",
+            "MovieCd": "163788",
             "movieName": "알라딘",
             "movieNameE": "Aladdin",
             "pubDate": "2019",
@@ -368,9 +368,9 @@
     },
     {
         "pk": 24,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "136900",
+            "MovieCd": "136900",
             "movieName": "어벤져스: 엔드게임",
             "movieNameE": "Avengers: Endgame",
             "pubDate": "2019",
@@ -384,9 +384,9 @@
     },
     {
         "pk": 25,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "32686",
+            "MovieCd": "32686",
             "movieName": "센과 치히로의 행방불명",
             "movieNameE": "千と千尋の神隠し,  The Spiriting Away Of Sen And Chihiro",
             "pubDate": "2001",
@@ -400,9 +400,9 @@
     },
     {
         "pk": 26,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "66463",
+            "MovieCd": "66463",
             "movieName": "토이 스토리 3",
             "movieNameE": "Toy Story 3",
             "pubDate": "2010",
@@ -416,9 +416,9 @@
     },
     {
         "pk": 27,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "106360",
+            "MovieCd": "106360",
             "movieName": "위대한 쇼맨",
             "movieNameE": "The Greatest Showman",
             "pubDate": "2017",
@@ -432,9 +432,9 @@
     },
     {
         "pk": 28,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "181700",
+            "MovieCd": "181700",
             "movieName": "안녕 베일리",
             "movieNameE": "A Dog's Journey",
             "pubDate": "2019",
@@ -448,9 +448,9 @@
     },
     {
         "pk": 29,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "35939",
+            "MovieCd": "35939",
             "movieName": "클래식",
             "movieNameE": "The Classic",
             "pubDate": "2003",
@@ -464,9 +464,9 @@
     },
     {
         "pk": 30,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "10048",
+            "MovieCd": "10048",
             "movieName": "죽은 시인의 사회",
             "movieNameE": "Dead Poets Society",
             "pubDate": "1989",
@@ -480,9 +480,9 @@
     },
     {
         "pk": 31,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "92125",
+            "MovieCd": "92125",
             "movieName": "헌터 킬러",
             "movieNameE": "Hunter Killer",
             "pubDate": "2018",
@@ -496,9 +496,9 @@
     },
     {
         "pk": 32,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "17170",
+            "MovieCd": "17170",
             "movieName": "레옹",
             "movieNameE": "Leon",
             "pubDate": "1994",
@@ -512,9 +512,9 @@
     },
     {
         "pk": 33,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "161850",
+            "MovieCd": "161850",
             "movieName": "아이 캔 스피크",
             "movieNameE": "i Can Speak",
             "pubDate": "2017",
@@ -528,9 +528,9 @@
     },
     {
         "pk": 34,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "31796",
+            "MovieCd": "31796",
             "movieName": "반지의 제왕: 왕의 귀환",
             "movieNameE": "The Lord Of The Rings: The Return Of The King",
             "pubDate": "2003",
@@ -544,9 +544,9 @@
     },
     {
         "pk": 35,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "134899",
+            "MovieCd": "134899",
             "movieName": "동주",
             "movieNameE": "DongJu; The Portrait of A Poet",
             "pubDate": "2015",
@@ -560,9 +560,9 @@
     },
     {
         "pk": 36,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "17541",
+            "MovieCd": "17541",
             "movieName": "굿바이 마이 프랜드",
             "movieNameE": "The Cure",
             "pubDate": "1995",
@@ -576,9 +576,9 @@
     },
     {
         "pk": 37,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "31162",
+            "MovieCd": "31162",
             "movieName": "캐스트 어웨이",
             "movieNameE": "Cast Away",
             "pubDate": "2000",
@@ -592,9 +592,9 @@
     },
     {
         "pk": 38,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "12482",
+            "MovieCd": "12482",
             "movieName": "여인의 향기",
             "movieNameE": "Scent Of A Woman",
             "pubDate": "1992",
@@ -608,9 +608,9 @@
     },
     {
         "pk": 39,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "147092",
+            "MovieCd": "147092",
             "movieName": "히든 피겨스",
             "movieNameE": "Hidden Figures",
             "pubDate": "2016",
@@ -624,9 +624,9 @@
     },
     {
         "pk": 40,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "130850",
+            "MovieCd": "130850",
             "movieName": "주토피아",
             "movieNameE": "Zootopia",
             "pubDate": "2016",
@@ -640,9 +640,9 @@
     },
     {
         "pk": 41,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "18847",
+            "MovieCd": "18847",
             "movieName": "타이타닉",
             "movieNameE": "Titanic",
             "pubDate": "1997",
@@ -656,9 +656,9 @@
     },
     {
         "pk": 42,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "73372",
+            "MovieCd": "73372",
             "movieName": "세 얼간이",
             "movieNameE": "3 Idiots",
             "pubDate": "2009",
@@ -672,9 +672,9 @@
     },
     {
         "pk": 43,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "37886",
+            "MovieCd": "37886",
             "movieName": "클레멘타인",
             "movieNameE": "Clementine",
             "pubDate": "2004",
@@ -688,9 +688,9 @@
     },
     {
         "pk": 44,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "18543",
+            "MovieCd": "18543",
             "movieName": "서유기 2 - 선리기연",
             "movieNameE": "西遊記 完結篇 之 仙履奇緣: A Chinese Odyssey Part Two - Cinderella",
             "pubDate": "0",
@@ -704,9 +704,9 @@
     },
     {
         "pk": 45,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "34324",
+            "MovieCd": "34324",
             "movieName": "집으로...",
             "movieNameE": "The Way Home",
             "pubDate": "2002",
@@ -720,9 +720,9 @@
     },
     {
         "pk": 46,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "14450",
+            "MovieCd": "14450",
             "movieName": "쉰들러 리스트",
             "movieNameE": "Schindler's List",
             "pubDate": "1993",
@@ -736,9 +736,9 @@
     },
     {
         "pk": 47,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "19079",
+            "MovieCd": "19079",
             "movieName": "굿 윌 헌팅",
             "movieNameE": "Good Will Hunting",
             "pubDate": "1997",
@@ -752,9 +752,9 @@
     },
     {
         "pk": 48,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "39636",
+            "MovieCd": "39636",
             "movieName": "지금, 만나러 갑니다",
             "movieNameE": "いま、会いにゆきます,  Be With You",
             "pubDate": "2004",
@@ -768,9 +768,9 @@
     },
     {
         "pk": 49,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "76667",
+            "MovieCd": "76667",
             "movieName": "울지마 톤즈",
             "movieNameE": "Don't Cry for Me Sudan",
             "pubDate": "2010",
@@ -784,9 +784,9 @@
     },
     {
         "pk": 50,
-        "model": "movies.Movie",
+        "model": "movies.movie",
         "fields": {
-            "movieCd": "10038",
+            "MovieCd": "10038",
             "movieName": "에이리언 2",
             "movieNameE": "Aliens",
             "pubDate": "1986",
@@ -797,5 +797,5 @@
             "poster_url": "https://movie-phinf.pstatic.net/20111223_189/1324569548247L26km_JPEG/movie_image.jpg",
             "description": "에이리언과의 싸움에서 간신히 살아남은 리플리는 잠든 채로 57년을 떠돌다 구조선에 의해 구출된다. 회사는 리플리를 비롯한 당시 승무원들이 로스트로모호를 잃어버린 것을 추궁하지만 에이리언 얘기는 믿지 않는다. 이때 지구와 한 혹성 거주민들의 통신이 두절되는 사건이 벌어지자 리플리는 고문 자격으로 해병대와 동행하게 된다. 엄청난 무장을 갖춘 해병대 대원들은 자신의 힘을 과신하고 있었으며, 리플리의 경고는 통하지 않는다. 혹성에 도착한 해병대원들은 수색을 시작하고, 곧 혹성 거주민들이 에이리언 유충의 산 먹이로 된 것을 목격하고, 곧이어 벌어진 에이리언과의 교전에서 여러 대원들을 잃는다. 그들은 혹성 거주민들의 실험실로 대피하고, 리플리는 이곳에서 거주민들의 마지막 생존자인 뉴트를 발견하게 된다.  한 대원이 에이리언에 감염되는 바람에 셔틀은 폭발하고, 혹성은 폭발되기까지 카운트 다운에 들어간다. 회사 직원으로 동행한 카터 버크는 에이리언의 샘플을 빼돌리고자 음모를 꾸미는데..."
         }
-    },
+    }
 ]
