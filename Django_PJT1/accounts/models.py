@@ -1,22 +1,24 @@
 from django.db import models
 from django.urls import reverse
+
 # User < AbstractUser < AbstractBaseUser
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from movies.models import Genre
+
 
 from django_extensions.db.models import TimeStampedModel
+from movies.models import Genre
 
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 
 class User(AbstractUser):
-    nickname = models.Charfield(max_length=30)
+    nickname = models.CharField(max_length=30)
     like_genres = models.ManyToManyField(Genre, related_name='like_users')
     introduction = models.TextField()
 
 class Chatroom(models.Model):
-    name = models.Charfield(max_length=200)
+    name = models.CharField(max_length=200)
     chat_users = models.ManyToManyField(User, related_name='use_chatroom')
     styles = models.ManyToManyField(Genre, related_name='chats')
 
@@ -32,6 +34,6 @@ class Image(models.Model):
     )
 
 class Chatcontents(TimeStampedModel):
-    content = models.Charfield(max_length=300)
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    content = models.CharField(max_length=300)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     chatroom = models.ForeignKey(Chatroom, on_delete=models.CASCADE)
