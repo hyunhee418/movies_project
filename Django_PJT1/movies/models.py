@@ -1,6 +1,8 @@
 from django.db import models
+from django.conf import settings
 from django.contrib.auth import get_user_model
-User = get_user_model()
+# User = get_user_model()
+User = settings.AUTH_USER_MODEL
 
 class Genre(models.Model):
     name = models.CharField(max_length=20)
@@ -33,3 +35,9 @@ class Movie_has_genre(models.Model):
 #     score = models.IntegerField()
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)
 #     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+class Comment(models.Model):
+    content = models.CharField(max_length=150)
+    score = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
