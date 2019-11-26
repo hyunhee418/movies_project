@@ -17,11 +17,6 @@ class User(AbstractUser):
     like_genres = models.ManyToManyField(Genre, related_name='like_users')
     introduction = models.TextField()
 
-class Chatroom(models.Model):
-    name = models.CharField(max_length=200)
-    chat_users = models.ManyToManyField(User, related_name='use_chatroom')
-    styles = models.ManyToManyField(Genre, related_name='chats')
-
 class Image(models.Model):
     # Image.objects.get(id=1).user
     # User.objects.get(id=1).image_set.file.
@@ -33,7 +28,6 @@ class Image(models.Model):
         options={'quality': 90},
     )
 
-class Chatcontents(TimeStampedModel):
-    content = models.CharField(max_length=300)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    chatroom = models.ForeignKey(Chatroom, on_delete=models.CASCADE)
+class Damgle(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
