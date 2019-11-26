@@ -14,7 +14,7 @@ class Movie(models.Model):
     movieNameE = models.CharField(max_length=30)
     pubDate = models.IntegerField()
     runtime = models.CharField(max_length=200)
-    # genre = models.IntegerField()
+    # genre = models.ManyToManyField(Genre, related_name='genre_movies') # 여기가 변경사항
     director = models.CharField(max_length=200)
     userRating = models.FloatField()
     poster_url = models.CharField(max_length=140)
