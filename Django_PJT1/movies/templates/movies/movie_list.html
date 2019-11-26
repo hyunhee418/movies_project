@@ -8,17 +8,37 @@
     {% comment %} <a href="{% url 'cinema:new_movie' %}">
         <button>Add New Movie</button>
     </a> {% endcomment %}
+    <div class="row">
+        <div class="card-columns col-8">
+            {% for movie in movies1 %}
+                <div class="card my-3">
+                <ul>
+                    <a href="{% url 'movies:movie_detail' movie.id %}">
+                        {{ movie.movieName }}
+                        <img src="{{movie.poster_url}}" class="d-block w-100 poster" alt="{{ movie.movieName }}-poster">
+                        </a>  평점: {{ movie.userRating }}
+                </ul>
+                </div>
+            {% endfor %}
+            {% for movie2 in movies2 %}
+                <div class="card my-3">
 
-{% if movies %}
-    <ul>
-        {% for movie in movies %}
-            <li>
-                <a href="{% url 'movies:movie_detail' movie.id %}">
-                    {{ movie.movieName }}</a>  평점: {{ movie.userRating }}
-            </li>
-        {% endfor %}
-    </ul>
-{% endif %}
+                <ul>
+                    <a href="{% url 'movies:movie_detail' movie2.id %}">
+                        <img src="{{movie2.poster_url}}" class="d-block w-100 poster" alt="{{ movie2.movieName }}-poster">
+                        </a>  평점: {{ movie2.userRating }}
+                </ul>
+                </div>
+            {% endfor %}
+        </div>
+    <div class="col-4">
+        <div class="list-group">
+            {% for user in users %}
+                <a href="{% url 'accounts:user_page' user.id %}" class="list-group-item list-group-item-action">
+                {{ user.username }}
+                </a>
+            {% endfor %}
+</div>
 
 {% endblock %}
 

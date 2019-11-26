@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="card-columns">
+    {% if search_movies %}
+    {% for search_movie in search_movies %}
+        <div class="card my-6">
+
+        <ul>
+            <a href="{% url 'movies:movie_detail' search_movie.id %}">
+                {{ search_movie.movieName }}
+                <img src="{{search_movie.poster_url}}" class="d-block w-100 poster" alt="{{ search_movie.movieName }}-poster">
+                </a>  평점: {{ search_movie.userRating }}
+        </ul>
+        </div>
+    {% endfor %}
+    {% endif %}
+    </div>
+{% endblock  %}

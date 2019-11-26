@@ -4,13 +4,10 @@
 <form action="{% url 'accounts:checked' %}" method="POST" class="card-columns">
     {% csrf_token %}
     {% for movie in movies %}
-        <div class="card my-3">
             {% comment %} <div class="card-body" id="movie{{movie.}}" ></div> {% endcomment %}
             <ul>
-                {% for movie_genre in movie.movie_genre.all %}
-                    <input type="checkbox" name="checked_data" value="{{ movie_genre.genre_id }}">
-                    <img src="{{movie.poster_url}}" class="d-block w-100 poster" alt="{{ movie.movieName }}-poster" data-id="{{ movie_genre.genre_id }}">
-                {% endfor %}
+                <input type="checkbox" name="checked_data" value="{{ movie.genre_id }}, {{movie.id}}">
+                <img src="{{movie.poster_url}}" class="d-block w-100 poster" alt="{{ movie.movieName }}-poster">
             </ul>
 
             {% comment %} <div class="card-body" id="" onclick="">

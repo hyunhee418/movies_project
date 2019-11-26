@@ -4,7 +4,8 @@ from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
-from movies.models import Movie,Genre
+from movies.models import Movie, Genre
+from django.db.models import Max
 User = get_user_model()
 
 @require_http_methods(['GET', 'POST'])
@@ -83,11 +84,15 @@ def test(request):
 @login_required
 def checked(request):
     if request.method == "POST":
+        # 어떤 장르 영화를 좋아하는 지
         genre = [0]*28
         checked_list = request.POST.getlist('checked_data')
         user = request.user
         for i in checked_list:
-            genre[int(i)] += 1
+            genre_id, movie_id = i.split(',')
+            genre[int(genre_id)] += 1
+            movie = get_object_or_404(Movie, id = int(movie_id))
+            user.like_movies.add(movie)
         max_point1, max_idd1, max_point2, max_idd2 = 0, 0, 0, 0
         for j in range(28):
             if max_point1 < genre[j]:
@@ -101,4 +106,19 @@ def checked(request):
         genre2 = get_object_or_404(Genre, id=max_idd2)
         user.like_genres.add(genre1)
         user.like_genres.add(genre2)
-        return redirect('movies:movie_list')
+        # 추천 알고리즘
+        movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[:10]
+        movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:10]
+        # 취향 비슷한 사람 찾기
+        users = []
+        for user in User.objects.all():
+            genre_li = []
+            for like_genre in user.like_genres.all():
+                genre_li.append(like_genre.id)
+            if sorted(genre_li) == sorted(li):
+                users.append(user)
+        return render(request, 'movies/movie_list.html', {
+            'movies1' : movies1,
+            'movies2' : movies2,
+            'users': users,
+        })
