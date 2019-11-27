@@ -14,7 +14,5 @@ urlpatterns = [
     path('user_page/<int:user_id>/edit/', views.edit_user_page, name='edit_user_page'),
 
     path('user_page/<int:user_id>/edit_image/', views.edit_user_image, name='edit_user_image'),
-
-
-    # path('user_page/<int:page_master_id>/damgle/create/', views.create_damgle, name='create_damgle'),
+    path('user_page/<int:page_master_id>/damgle/create/', views.create_damgle, name='create_damgle'),
 ]

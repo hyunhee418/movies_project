@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
-from accounts.models import Image
+from accounts.models import Image, Damgle
 User = get_user_model()
 
 from django import forms
@@ -25,7 +25,7 @@ class ImageForm(forms.ModelForm):
             'file': forms.FileInput(attrs={'multiple': True})
         }
 
-# class DamgleForm(forms.ModelForm):
-#     class Meta:
-#         model = Damgle
-#         fields = ('content',)
+class DamgleForm(forms.ModelForm):
+    class Meta:
+        model = Damgle
+        fields = ('content',)
