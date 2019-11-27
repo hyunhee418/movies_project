@@ -23,11 +23,12 @@ class Image(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     file = ProcessedImageField(
         processors=[ResizeToFit(600, 600, mat_color=(256, 256, 256))],
-        upload_to = 'users/images/',
+        upload_to = 'user_image/images/',
         format='JPEG',
         options={'quality': 90},
     )
 
-class Damgle(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.CharField(max_length=200)
+# class Damgle(models.Model):
+#     page_master = models.ForeignKey(User, on_delete=models.CASCADE, related_name='page_master')
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     content = models.CharField(max_length=200)
