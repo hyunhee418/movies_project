@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CustomAuthenticationForm, CustomUserCreationForm, DamgleForm
+# from .forms import CustomAuthenticationForm, CustomUserCreationForm, DamgleForm
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, ImageForm
 from django.views.decorators.http import require_http_methods, require_GET, require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
 from movies.models import Movie, Genre
 from django.db.models import Max
-from accounts.models import Damgle
+# from accounts.models import Damgle
 User = get_user_model()
 
 @require_http_methods(['GET', 'POST'])
@@ -54,12 +55,13 @@ def logout(request):
 @require_http_methods(['GET'])
 def user_page(request, user_id):
     user = get_object_or_404(User, id = user_id)
-    damgle_form = DamgleForm()
-    damgles = Damgle.objects.filter(page_master_id = user_id).exists()
+    # image = //
+    # damgle_form = DamgleForm()
+    # damgles = Damgle.objects.filter(page_master_id = user_id).exists()
     return render(request, 'accounts/user_page.html', {
         'user_info' : user,
-        'damgle_form' : damgle_form,
-        'damgles' : damgles,
+        # 'damgle_form' : damgle_form,
+        # 'damgles' : damgles,
     })
     # return render(request, 'accounts/user_page.html', {
     #     'user_info' : user,
@@ -83,6 +85,24 @@ def edit_user_page(request, user_id):
         'form':form,
     })
     
+
+def edit_user_image(request, user_id):
+    images = request.FILES.getlist('file')
+    # from IPython import embed; embed()
+    if request.method == 'POST':
+        for image in images:
+            request.FILES['file'] = image
+            image_form = ImageForm(files=request.FILES)
+            if image_form.is_valid():
+                image = image_form.save(commit=False)
+                image.user_id = request.user.id
+                image.save()
+                return redirect('accounts:user_page', user_id)
+    else:
+        image_form = ImageForm()
+    return render(request, 'accounts/image_form.html', {
+        'image_form': image_form,
+    })
 
 def test(request):
     movies = Movie.objects.all()[50:141]
@@ -116,8 +136,7 @@ def checked(request):
         user.like_genres.add(genre1)
         user.like_genres.add(genre2)
         # 추천 알고리즘
-        movie = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[:1]
-        movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[1:11]
+        movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[:10]
         movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:10]
         # 취향 비슷한 사람 찾기
         users = []
@@ -128,21 +147,20 @@ def checked(request):
             if sorted(genre_li) == sorted([max_idd1, max_idd2]):
                 users.append(user)
         return render(request, 'movies/movie_list.html', {
-            'movie': movie,
             'movies1' : movies1,
             'movies2' : movies2,
             'users': users,
         })
 
-@login_required
-@require_POST
-def create_damgle(request, page_master_id):
-    page_master = get_object_or_404(User, id=page_master_id)
-    if request.method == 'POST':
-        damgle_form = DamgleForm(request.POST)
-        if damgle_form.is_valid():
-            damgle = damgle_form.save(commit=False)
-            damgle.user = request.user
-            damgle.page_master = page_master
-            damgle.save()
-        return redirect('accounts/user_page.html', page_master.id)
+# @login_required
+# @require_POST
+# def create_damgle(request, page_master_id):
+#     page_master = get_object_or_404(User, id=page_master_id)
+#     if request.method == 'POST':
+#         damgle_form = DamgleForm(request.POST)
+#         if damgle_form.is_valid():
+#             damgle = damgle_form.save(commit=False)
+#             damgle.user = request.user
+#             damgle.page_master = page_master
+#             damgle.save()
+#         return redirect('accounts/user_page.html', page_master.id)

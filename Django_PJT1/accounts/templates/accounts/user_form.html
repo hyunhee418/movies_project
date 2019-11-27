@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
     <div class="container">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit">
