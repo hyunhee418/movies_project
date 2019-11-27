@@ -115,7 +115,7 @@ def checked(request):
             genre_li = []
             for like_genre in user.like_genres.all():
                 genre_li.append(like_genre.id)
-            if sorted(genre_li) == sorted(li):
+            if sorted(genre_li) == sorted([max_idd1, max_idd2]):
                 users.append(user)
         return render(request, 'movies/movie_list.html', {
             'movies1' : movies1,
