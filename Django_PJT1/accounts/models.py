@@ -29,5 +29,6 @@ class Image(models.Model):
     )
 
 class Damgle(models.Model):
+    page_master = models.ForeignKey(User, on_delete=models.CASCADE, related_name='page_master')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=200)

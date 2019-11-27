@@ -1,0 +1,17 @@
+<div class="card-body">
+    <div class="card-footer">
+        <form action="{% url 'accounts:create_damgle' user_id %}" method="POST">
+            {% csrf_token %}
+            {% damgle_form %}
+            {% buttons %}
+                <input type="submit" value="게시" class="btn btn-primary">
+            {% endbuttons %}
+        </form>
+    </div>
+    
+    {% for comment in user_info.page_master.damgles.all %}
+    <p class="card-text"><strong>{{comment.author}}</strong> {{comment.content}}</p>
+    {% empty %}
+    <p class="card-text">댓글이 없습니다.</p>
+    {% endfor %}
+</div>

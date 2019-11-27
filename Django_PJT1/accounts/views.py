@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CustomAuthenticationForm, CustomUserCreationForm
-from django.views.decorators.http import require_http_methods
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, DamgleForm
+from django.views.decorators.http import require_http_methods, require_GET, require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
 from movies.models import Movie, Genre
 from django.db.models import Max
+from accounts.models import Damgle
 User = get_user_model()
 
 @require_http_methods(['GET', 'POST'])
@@ -53,9 +54,17 @@ def logout(request):
 @require_http_methods(['GET'])
 def user_page(request, user_id):
     user = get_object_or_404(User, id = user_id)
+    damgle_form = DamgleForm()
+    damgles = Damgle.objects.filter(page_master_id = user_id).exists()
     return render(request, 'accounts/user_page.html', {
-        'user_info' :user,
+        'user_info' : user,
+        'damgle_form' : damgle_form,
+        'damgles' : damgles,
     })
+    # return render(request, 'accounts/user_page.html', {
+    #     'user_info' : user,
+    #     
+    # })
 
 @require_http_methods(['GET', 'POST'])
 def edit_user_page(request, user_id):
@@ -124,3 +133,16 @@ def checked(request):
             'movies2' : movies2,
             'users': users,
         })
+
+@login_required
+@require_POST
+def create_damgle(request, page_master_id):
+    page_master = get_object_or_404(User, id=page_master_id)
+    if request.method == 'POST':
+        damgle_form = DamgleForm(request.POST)
+        if damgle_form.is_valid():
+            damgle = damgle_form.save(commit=False)
+            damgle.user = request.user
+            damgle.page_master = page_master
+            damgle.save()
+        return redirect('accounts/user_page.html', page_master.id)
