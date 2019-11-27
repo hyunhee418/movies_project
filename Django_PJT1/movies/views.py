@@ -15,18 +15,20 @@ def movie_list(request):
     users = []
     for genre in genres:
         li.append(genre.id)
-    movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[:10]
+    movie = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[0]
+    movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[1:11]
     movies2 = Movie.objects.filter(genre_id=li[1]).order_by('-userRating').distinct()[:10]
 
-    for user in User.objects.all():
+    for user1 in User.objects.all():
         genre_li = []
-        for like_genre in user.like_genres.all():
+        for like_genre in user1.like_genres.all():
             genre_li.append(like_genre.id)
-        if sorted(genre_li) == sorted(li):
-            users.append(user)
+        if sorted(genre_li) == sorted(li) and user1.id != user.id:
+            users.append(user1)
     if not users:
         users = User.objects.all()
     return render(request, 'movies/movie_list.html', {
+        'movie' : movie,
         'movies1' : movies1,
         'movies2' : movies2,
         'users':users
