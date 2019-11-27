@@ -6,11 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
 from movies.models import Movie, Genre
-<<<<<<< HEAD
 from .models import Damgle
-=======
 from accounts.models import Image
->>>>>>> 18829532f70b01abe920f5abe3bc731e6e14176e
 from django.db.models import Max
 # from accounts.models import Damgle
 User = get_user_model()
@@ -60,15 +57,10 @@ def logout(request):
 @require_http_methods(['GET'])
 def user_page(request, user_id):
     user = get_object_or_404(User, id = user_id)
-<<<<<<< HEAD
     # image = //
     damgle_form = DamgleForm()
     # damgle_form.page_master_id = user.id
     damgles = Damgle.objects.filter(page_master_id = user_id)
-=======
-    # damgle_form = DamgleForm()
-    # damgles = Damgle.objects.filter(page_master_id = user_id).exists()
->>>>>>> 18829532f70b01abe920f5abe3bc731e6e14176e
     return render(request, 'accounts/user_page.html', {
         'user_info' : user,
         'damgle_form' : damgle_form,
@@ -158,10 +150,6 @@ def checked(request):
         movie = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[0]
         genre = get_object_or_404(Genre, id=movie.genre_id)
         movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[1:11]
-<<<<<<< HEAD
-=======
-       
->>>>>>> 18829532f70b01abe920f5abe3bc731e6e14176e
         movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:10]
         # 취향 비슷한 사람 찾기
         users = []
