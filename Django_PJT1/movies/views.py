@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
-from .models import Movie, Genre
+from .models import Movie, Genre, Review
+from .forms import ReviewForm
 User = get_user_model()
 
 
@@ -16,6 +18,7 @@ def movie_list(request):
     for genre in genres:
         li.append(genre.id)
     movie = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[0]
+    genre = get_object_or_404(Genre, id=movie.genre_id)
     movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[1:11]
     movies2 = Movie.objects.filter(genre_id=li[1]).order_by('-userRating').distinct()[:10]
 
@@ -29,8 +32,9 @@ def movie_list(request):
         users = User.objects.all()
     return render(request, 'movies/movie_list.html', {
         'movie' : movie,
-        'movies1' : movies1,
-        'movies2' : movies2,
+        'genre' : genre,
+        'movies1': movies1,
+        'movies2': movies2,
         'users':users
     })
 
@@ -38,13 +42,16 @@ def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
     genre = get_object_or_404(Genre, id=movie.genre_id)
     is_like = movie.like_users.filter(id=request.user.id).exists()
+    review_form = ReviewForm()
     # review_form = ReviewForm()
     # is_like = movie.like_users.filter(id=request.user.id).exists()
+    
     return render(request, 'movies/movie_detail.html', {
         'movie': movie,
         'genre': genre,
-        # 'review_form': review_form,
+        'review_form': review_form,
         'is_like': is_like,
+        
     })
     
 def search_movie(request):
@@ -82,4 +89,25 @@ def toggle_like(request, movie_id):
     genre2 = get_object_or_404(Genre, id=max_idd2)
     user.like_genres.add(genre1)
     user.like_genres.add(genre2)
+    return redirect('movies:movie_detail', movie.id)
+
+@login_required
+@require_POST
+def create_review(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    form = ReviewForm(request.POST)
+    if form.is_valid():
+        review = form.save(commit=False)
+        review.user = request.user
+        review.movie = movie
+        review.save()
+    return redirect('movies:movie_detail', movie.id)
+
+@login_required
+@require_POST
+def delete_review(request, movie_id, review_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    review = get_object_or_404(Review, movie_id=movie_id, id=review_id)
+    if review.user == request.user:
+        review.delete()
     return redirect('movies:movie_detail', movie.id)

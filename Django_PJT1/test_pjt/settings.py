@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'bootstrap4',
     'imagekit',
-    'channels',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
