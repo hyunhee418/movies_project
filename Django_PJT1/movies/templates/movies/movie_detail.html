@@ -1,31 +1,96 @@
 {% extends 'base.html' %}
 {% block body %}
-    <h1>{{ movie.movieName }}</h1>
-    {% comment %} <form action="{% url 'movies:like' movie.id %}" method="POST">
-        {% csrf_token %}
-        <button>
-            {% if is_like %}좋아요취소{% else %}좋아요{% endif %}
-        </button>
-    </form> {% endcomment %}
-    {% comment %} <p>{{ movie.like_users.count }}명이 좋아합니다</p> {% endcomment %}
-    {% comment %} <p><b> 관객수 : </b> {{ movie.audience }} 명</p> {% endcomment %}
-    <p><b> 장르 : </b> {{ genre.name }}</p>
-    <img src="{{ movie.poster_url }}" alt="poster" height="200">
-    <h3>줄거리</h3>
-    <p>{{ movie.description }}</p>
-    <hr>
-    {% comment %} {% include 'movies/_review.html' %} {% endcomment %}
-    <form action="{% url 'movies:like' movie.id %}" method="POST">
-        {% csrf_token %}
-        <button style="border:0; background:none;">
-                {% if is_like %}
-                    <i class="fas fa-heart fa-lg" style="color: #ed4956;"></i>			
-                {% else %}
-                    <i class="far fa-heart fa-lg" style="color: #ed4956; border:10;">
-                        <span class="badge badge-light"></span>
-                    </i>	
-                {% endif %}
-        </button>
-    </form>
+{% load bootstrap4 %}
+<div class="container mt-5">
 
-{% endblock body %}
+    <div class="row">
+        <div class="col-6">
+            <div class="title">
+                <img src="{{movie.poster_url}}" class="h-70 poster" alt="{{ movie.movieName }}-poster">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="list-gruop mt-5">
+                <div class="moviename">{{movie.movieName}} ({{movie.movieNameE}})</div>
+                <form action="{% url 'movies:like' movie.id %}" method="POST" style="display:inline-block">
+                    {% csrf_token %}
+                    <button style="border:0; background:none;">
+                        {% if is_like %}
+                        <i class="fas fa-heart fa-4x" style="color: #ed4956;"></i>
+                        {% else %}
+                        <i class="far fa-heart fa-4x" style="color: #ed4956; border:10;">
+                            <span class="badge badge-light"></span>
+                        </i>
+                        {% endif %}
+                    </button>
+                </form>
+                <li class="list-item" style="margin-top:0px;">평점 : <div class="userrating">{{movie.userRating}}</div>
+                </li>
+                <li class="list-item">장르 : {{genre.name}}</li>
+                <li class="list-item">감독 : {{movie.director}}</li>
+                <li class="list-item">개봉일 : {{movie.pubDate}}</li>
+                <li class="list-item">줄거리</li>
+                <div class="description">{{movie.description}}</div>
+            </div>
+        </div>
+    </div>
+    {% comment %} 리뷰 {% endcomment %}
+    <div class="mt-5 mb-5" style="font-size: 50px;text-align: center;">Reviews</div>
+    <div class="box">
+        
+        {% comment %} <div>
+            <img src="{{ review.user4[[]] }}" alt="">
+        </div> {% endcomment %}
+            <div class="mt-5 ml-5 mb-3">
+        {% for review in movie.review_set.all %}
+            <p class="card-text mt-2 ml-2" style="text-align:left;">{{review.user}} : (평점 : {{ review.score }}) {{review.content}}</p>
+        {% empty %}
+        <p class="card-text" style="text-align:center;">댓글이 없습니다.</p>
+        {% endfor %}
+        </div>
+        <div class="card-body">
+            <div class="card-footer">
+                <form action="{% url 'movies:create_review' movie.id %}" method="POST">
+                    {% csrf_token %}
+                    {% bootstrap_form review_form %}
+                        {% buttons %}
+                    <input type="submit" value="게시" class="btn btn-primary">
+                        {% endbuttons %}
+                </form>
+            </div>
+        </div>
+
+        <style>
+            img {
+                max-width: 100%;
+                height: auto !important;
+            }
+
+            .moviename {
+                font-size: 50px;
+                display: inline-block;
+            }
+
+            .userrating {
+                color: white;
+                background: blue;
+                display: inline-block;
+            }
+
+            .description {
+                word-break: break-all;
+                line-height: 25px;
+            }
+
+            .title {
+                width: 500px;
+                display: inline-block;
+            }
+
+            .box {
+                margin-top: 10px;
+                border: 0.5px solid #DCDCDC;
+                border-radius: 25px;
+            }
+        </style>
+        {% endblock body %}

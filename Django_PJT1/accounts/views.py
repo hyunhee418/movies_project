@@ -49,7 +49,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect('movies:movie_list')
+    return redirect('accounts:signup')
 
 
 @require_http_methods(['GET'])
@@ -136,16 +136,21 @@ def checked(request):
         user.like_genres.add(genre1)
         user.like_genres.add(genre2)
         # 추천 알고리즘
-        movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[:10]
+        movie = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[0]
+        genre = get_object_or_404(Genre, id=movie.genre_id)
+        movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[1:11
+       
         movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:10]
         # 취향 비슷한 사람 찾기
         users = []
-        for user in User.objects.all():
+        for user1 in User.objects.all():
             genre_li = []
-            for like_genre in user.like_genres.all():
+            for like_genre in user1.like_genres.all():
                 genre_li.append(like_genre.id)
-            if sorted(genre_li) == sorted([max_idd1, max_idd2]):
-                users.append(user)
+            if sorted(genre_li) == sorted([max_idd1, max_idd2]) and user1.id != user.id:
+                users.append(user1)
+        if not users:
+            users = User.objects.all()
         return render(request, 'movies/movie_list.html', {
             'movies1' : movies1,
             'movies2' : movies2,

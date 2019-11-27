@@ -4,140 +4,153 @@
 {% endblock %}
 
 {% block body %}
-    {% comment %} <a href="{% url 'cinema:new_movie' %}">
-        <button>Add New Movie</button>
-    </a> {% endcomment %}
-    <header class="header-title">
-		<h2 class="header-title-h">당신에게 어울리는 영화를 추천해드립니다.</h2>
-        <div class="row">
-            <div class="col-6 right">
-                <div class="center">
-                    <img src="{{movie.poster_url}}" class="h-80 poster" alt="{{ movie.movieName }}-poster">
-
-                    <div class="moviename">{{movie.movieName}} ({{movie.movieNameE}})</div>
+{% comment %} <a href="{% url 'cinema:new_movie' %}">
+    <button>Add New Movie</button>
+</a> {% endcomment %}
+<header class="header-title">
+    <h2 class="header-title-h">오늘은 {{genre.name}}영화 시청하시는 건 어떨까요?</h2>
+    <div class="row">
+        <div class="col-6 right">
+            <div class="center">
+                <div class="title">
+                    <img src="{{movie.poster_url}}" class="h-70 poster" alt="{{ movie.movieName }}-poster">
                 </div>
+                <div class="moviename">{{movie.movieName}} ({{movie.movieNameE}})</div>
             </div>
-            <div class="col-6 white">
-                <div class="list-gruop">
-                <li class="list-item">평점 : <div class="userrating">{{movie.userRating}}</div></li>
-                <li class="list-item">장르 : {% for genre in movie.genre_set.all %}{{genre.name}}{% endfor %}</li>
+        </div>
+        <div class="col-6 white">
+            <div class="list-gruop">
+                <li class="list-item">평점 : <div class="userrating">{{movie.userRating}}</div>
+                </li>
+                <li class="list-item">장르 : {{genre.name}}</li>
                 <li class="list-item">감독 : {{movie.director}}</li>
                 <li class="list-item">개봉일 : {{movie.pubDate}}</li>
                 <li class="list-item">줄거리 : </li>
                 <div class="description" style="display:inline-block">{{movie.description}}</div>
                 <li class="list-item" style="display:inline-block; margin-top:0px;">...... </li>
                 <a href="{% url 'movies:movie_detail' movie.id%}">더보기</a>
-                </div>
             </div>
         </div>
+    </div>
 
-	</header>
-    <div class="row">
-        <div class="col-8">
-            <div class="col-11 body-center box">
+</header>
+<div class="row">
+    <div class="col-8">
+        <div class="col-11 body-center box">
             <div class="recommenduser">추천 list</div>
             <div class="card-columns">
                 {% for movie1 in movies1 %}
-                    <div class="card my-3 mb-3">
+                <div class="card my-3 mb-3">
                     <a href="{% url 'movies:movie_detail' movie1.id %}">
-                        <img src="{{movie1.poster_url}}" class="w-100 poster" alt="{{ movie1.movieName }}-poster">
+                        <img src="{{movie1.poster_url}}" class="h-10 poster" alt="{{ movie1.movieName }}-poster">
                     </a>
-                    </div>
+                </div>
                 {% endfor %}
                 {% for movie2 in movies2 %}
-                    <div class="card my-3">
-                        <a href="{% url 'movies:movie_detail' movie2.id %}">
-                            <img src="{{movie2.poster_url}}" class="card-img-top d-block w-100 poster" alt="{{ movie2.movieName }}-poster">
-                            </a>
-                    </div>
-                {% endfor %}
-            </div>
-            </div>
-        </div>
-        <div class="col-3 box">
-        <div class="recommenduser mb-4">취향 저격 User</div>
-            <div class="list-group">
-                {% for user in users %}
-
-                    <a href="{% url 'accounts:user_page' user.id %}" class="list-group-item list-group-item-action">
-                    {{ user.username }}
+                <div class="card my-3">
+                    <a href="{% url 'movies:movie_detail' movie2.id %}">
+                        <img src="{{movie2.poster_url}}" class="card-img-top d-block w-100 poster"
+                            alt="{{ movie2.movieName }}-poster">
                     </a>
+                </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+    <div class="col-3 box">
+        <div class="recommenduser mb-4">취향 저격 User</div>
+        <div class="list-group">
+            {% for user in users %}
+
+            <a href="{% url 'accounts:user_page' user.id %}" class="list-group-item list-group-item-action">
+                {{ user.username }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 <style>
-header {
-    float: top;
-    padding-top: 0px;
-    margin-top: 0px;
-    height: 700px;
-    width: 100%;
-    background: #000;
-    line-height: 40px;
-}
+    header {
+        float: top;
+        padding-top: 0px;
+        margin-top: 0px;
+        height: 700px;
+        width: 100%;
+        background: #000;
+        line-height: 40px;
+    }
 
-.body-center {
-    float: right;
-    text-align:center;
-}
+    img {
+        max-width: 100%;
+        height: auto !important;
+    }
 
-.userrating {
-    margin-top: 80px;
-    color: white;
-    background : blue;
-    display: inline-block;
-}
+    .title {
+        width: 300px;
+        display: inline-block;
+    }
 
-.description {
-    word-break:break-all;
-    display:inline-block;
-    width: 500px;
-    height: 270px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 25px;
-    padding-bottom: 0px;
-    margin-bottom: 0px;  
-}
-.center {
-    padding-top: 25px;
-    display:inline-block;
-    text-align:center;
-}
+    .body-center {
+        float: right;
+        text-align: center;
+    }
 
-.header-title-h{
-    padding-top: 25px;
-    text-align:center;
-    font-size: 30px;
-    color: #FFFFFF;
-}
+    .userrating {
+        margin-top: 80px;
+        color: white;
+        background: blue;
+        display: inline-block;
+    }
 
-.right{
-    padding-top: 25px;
-    text-align:right;
-    font-size:25px;
-    color: #FFFFFF;
-}
+    .description {
+        word-break: break-all;
+        display: inline-block;
+        width: 500px;
+        height: 270px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 25px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
 
-.moviename{
-    padding-top: 25px;
-    font-size:25px;
-    color: #FFFFFF;
-}
+    .center {
+        padding-top: 25px;
+        display: inline-block;
+        text-align: center;
+    }
 
-.box{
-    margin-top: 10px;
-    border: 0.5px solid #DCDCDC;
-    border-radius: 25px;
-}
+    .header-title-h {
+        padding-top: 25px;
+        text-align: center;
+        font-size: 30px;
+        color: #FFFFFF;
+    }
 
-.recommenduser {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size:50px;
-    text-align:center;
-}
+    .right {
+        padding-top: 25px;
+        text-align: right;
+        font-size: 25px;
+        color: #FFFFFF;
+    }
+
+    .moviename {
+        padding-top: 25px;
+        font-size: 25px;
+        color: #FFFFFF;
+    }
+
+    .box {
+        margin-top: 10px;
+        border: 0.5px solid #DCDCDC;
+        border-radius: 25px;
+    }
+
+    .recommenduser {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 50px;
+        text-align: center;
+    }
 </style>
 {% endblock %}
-
