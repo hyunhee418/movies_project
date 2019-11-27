@@ -79,7 +79,8 @@ def edit_user_page(request, user_id):
         form = CustomUserCreationForm(request.POST, instance=user) # 사용자가 '새로 입력한 데이터'를 미리 만들어둔 case에 넣음
         if form.is_valid():
             user = form.save()
-            return redirect('movies:user_page', user_id)
+            auth_login(request, user)
+            return redirect('accounts:user_page', user_id)
     # 사용자가 수정하기 위한 html 파일을 요청함/ 있던 데이터를 찾아서 html에 넣어서 보내줌
     else:        
         form = CustomUserCreationForm(instance=user)
@@ -150,7 +151,7 @@ def checked(request):
         movie = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[0]
         genre = get_object_or_404(Genre, id=movie.genre_id)
         movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[1:11]
-        movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:10]
+        movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:9]
         # 취향 비슷한 사람 찾기
         users = []
         for user1 in User.objects.all():

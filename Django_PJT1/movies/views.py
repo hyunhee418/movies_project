@@ -20,7 +20,7 @@ def movie_list(request):
     movie = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[0]
     genre = get_object_or_404(Genre, id=movie.genre_id)
     movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[1:11]
-    movies2 = Movie.objects.filter(genre_id=li[1]).order_by('-userRating').distinct()[:10]
+    movies2 = Movie.objects.filter(genre_id=li[1]).order_by('-userRating').distinct()[:9]
 
     for user1 in User.objects.all():
         genre_li = []
