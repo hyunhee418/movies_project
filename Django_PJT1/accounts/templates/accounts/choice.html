@@ -29,7 +29,12 @@
 		@2019, Hyun Hee Son and Da Yeon Ha
 		</div>
 		<div class="right">
-			<a href="{% url 'movies:movie_list'%}">NEXT <i class="far fa-hand-point-right fa-3x"></i></a>
+			{% comment %} <a href="{% url 'movies:movie_list'%}">NEXT <i class="far fa-hand-point-right fa-3x"></i></a> {% endcomment %}
+               <a style="display:scroll;position:fixed;bottom:0px; right:30px;" rel="nofollow"
+
+             href="#scrollbottom" style="font-size:30px;">Go to down<i class="far fa-hand-point-down fa-3x"></i></a>
+
+                <div id="scrollbottom"></div>
 		</div>
 </footer>
 

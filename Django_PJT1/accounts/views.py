@@ -14,15 +14,12 @@ User = get_user_model()
 
 @require_http_methods(['GET', 'POST'])
 def signup(request):
-    if request.user.is_authenticated:
-        return render(request, 'movies/movie_list.html')
-    
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
-            movies = Movie.objects.all()[50:141]
+            movies = Movie.objects.all()[:90]
             return render(request, 'accounts/choice.html', {
                 'movies':movies
             })
@@ -130,6 +127,7 @@ def checked(request):
         # 어떤 장르 영화를 좋아하는 지
         genre = [0]*28
         checked_list = request.POST.getlist('checked_data')
+        print(checked_list)
         user = request.user
         for i in checked_list:
             genre_id, movie_id = i.split(',')
