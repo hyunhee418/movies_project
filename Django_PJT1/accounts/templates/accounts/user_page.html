@@ -86,7 +86,7 @@
                 {% if user == damgle.user %}
                     <p class="card-text mt-2 mr-2" style="text-align:right;font-size:20px;"> {{ damgle.content}}<a href="{% url 'accounts:delete_damgle' user_info.id damgle.id %}"><i class="fas fa-eraser fa-1x"></i></a></p>
                 {% else %}
-                    <p class="card-text mt-2 ml-2" style="text-align:left;font-size:20px;">{{damgle.user}} : {{ damgle.content}}</p>
+                    <p class="card-text mt-2 ml-2" style="text-align:left;font-size:20px;"><a href="{% url 'accounts:user_page' damgle.user.id %}">{{damgle.user}}</a> : {{ damgle.content}}</p>
                 {% endif %}
                 {% empty %}
                     <p class="card-text" style="text-align:center;">담글이 없습니다.</p>

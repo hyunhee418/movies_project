@@ -6,7 +6,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from .models import Movie, Genre, Review
 from .forms import ReviewForm
+import random
 User = get_user_model()
+
+def index(request):
+    return render(request, 'movies/index.html')
 
 
 # Create your views here.
@@ -18,10 +22,28 @@ def movie_list(request):
     users = []
     for genre in genres:
         li.append(genre.id)
-    movie = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[0]
+    genre1_movies = Movie.objects.filter(genre_id=li[0])
+    genre2_movies = Movie.objects.filter(genre_id=li[1])
+    movie = random.choice(genre1_movies)
     genre = get_object_or_404(Genre, id=movie.genre_id)
-    movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[1:10]
-    movies2 = Movie.objects.filter(genre_id=li[1]).order_by('-userRating').distinct()[:9]
+    # print('----------------------')
+    # print(movie.movieName, type(genre1_movies))
+    genre1 = []
+    genre2 = []
+    for genre11 in genre1_movies:
+        genre1.append(genre11)
+    for genre22 in genre2_movies:
+        genre2.append(genre22)
+    if len(genre1) > 9:
+        movies1 = random.sample(genre1, 9)
+    else:
+        movies1 = random.shuffle(genre1)
+    if len(genre2) > 9:
+        movies2 = random.sample(genre2, 9)
+    else:
+        movies2 = random.shuffle(genre2)
+    # movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[1:10]
+    # movies2 = Movie.objects.filter(genre_id=li[1]).order_by('-userRating').distinct()[:9]
 
     for user1 in User.objects.all():
         genre_li = []

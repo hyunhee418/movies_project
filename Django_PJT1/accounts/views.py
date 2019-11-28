@@ -7,6 +7,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth import get_user_model
 from movies.models import Movie, Genre
 from .models import Damgle
+# import random
 from accounts.models import Image
 from django.db.models import Max
 # from accounts.models import Damgle
@@ -14,6 +15,8 @@ User = get_user_model()
 
 @require_http_methods(['GET', 'POST'])
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('movies:movie_list')
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -148,10 +151,16 @@ def checked(request):
         user.like_genres.add(genre1)
         user.like_genres.add(genre2)
         # 추천 알고리즘
+        # genre1_movies = Movie.objects.filter(genre_id=genre1)
+        # genre2_movies = Movie.objects.filter(genre_id=genre2)
+        # movie = random.choice(genre1_movies)
+        # movies1 = random.sample(genre1_movies, 10)
+        # movies2 = random.sample(genre2_movies, 10)
         movie = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[0]
         genre = get_object_or_404(Genre, id=movie.genre_id)
         movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[1:10]
         movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:9]
+
         # 취향 비슷한 사람 찾기
         users = []
         for user1 in User.objects.all():

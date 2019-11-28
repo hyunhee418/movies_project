@@ -46,7 +46,7 @@
         {% for review in movie.review_set.all %}
             <div class="row">
             <div class="col-10">
-            <p class="card-text mt-2 ml-2" style="text-align:left;font-size:20px;">{{review.user}} : (평점 : {{ review.score }}) {{review.content}}</p>
+            <p class="card-text mt-2 ml-2" style="text-align:left;font-size:20px;"><a href="{% url 'accounts:user_page' review.user.id %}">{{review.user}}</a> : (평점 : {{ review.score }}) {{review.content}}</p>
             </div>
             {% if  user == review.user %}
             <div class="col-1">
