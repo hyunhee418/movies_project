@@ -10,6 +10,7 @@ User = get_user_model()
 
 
 # Create your views here.
+@login_required
 def movie_list(request):
     user = request.user
     genres = user.like_genres.all()
@@ -19,7 +20,7 @@ def movie_list(request):
         li.append(genre.id)
     movie = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[0]
     genre = get_object_or_404(Genre, id=movie.genre_id)
-    movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[1:11]
+    movies1 = Movie.objects.filter(genre_id=li[0]).order_by('-userRating').distinct()[1:10]
     movies2 = Movie.objects.filter(genre_id=li[1]).order_by('-userRating').distinct()[:9]
 
     for user1 in User.objects.all():
@@ -38,6 +39,7 @@ def movie_list(request):
         'users':users
     })
 
+@login_required
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
     genre = get_object_or_404(Genre, id=movie.genre_id)
@@ -53,7 +55,8 @@ def movie_detail(request, movie_id):
         'is_like': is_like,
         
     })
-    
+
+@login_required
 def search_movie(request):
     search_movie = request.GET.get('search_movie')
     print(search_movie)
@@ -61,7 +64,7 @@ def search_movie(request):
     print(search_movies)
     return render(request, 'movies/search_movie.html', {'search_movies': search_movies})
         
-
+@login_required
 @require_POST
 def toggle_like(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
@@ -104,10 +107,24 @@ def create_review(request, movie_id):
     return redirect('movies:movie_detail', movie.id)
 
 @login_required
-@require_POST
 def delete_review(request, movie_id, review_id):
     movie = get_object_or_404(Movie, id=movie_id)
-    review = get_object_or_404(Review, movie_id=movie_id, id=review_id)
+    review = get_object_or_404(Review, movie_id=movie.id, id=review_id)
     if review.user == request.user:
         review.delete()
     return redirect('movies:movie_detail', movie.id)
+
+# def edit_review(request, movie_id, review_id):
+#     movie = get_object_or_404(Movie, id=movie_id)
+#     review = get_object_or_404(Review, movie_id=movie.id, id=review_id)
+#     if request.method == 'POST':    
+#         review_form = ReviewForm(request.POST, instance=review)
+#         if review_form.is_valid():
+#             review=review_form.save()
+#             return redirect('movies:movie_detail', movie.id)
+
+#     else:
+#         review_form = ReviewForm(instance=review)
+#     return render(request, 'movies/review_form.html', {
+#         'review_form':review_form
+#     })

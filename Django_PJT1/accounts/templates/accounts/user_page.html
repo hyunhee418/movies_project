@@ -80,14 +80,16 @@
                 <img src="{{ review.user4[[]] }}" alt="">
             </div> {% endcomment %}
             <div class="mt-5 ml-5 mb-3 mr-5">
+    
                 {% for damgle in damgles %}
+    
                 {% if user == damgle.user %}
-                <p class="card-text mt-2 mr-2" style="text-align:right;"> {{ damgle.content}}</p>
+                    <p class="card-text mt-2 mr-2" style="text-align:right;font-size:20px;"> {{ damgle.content}}<a href="{% url 'accounts:delete_damgle' user_info.id damgle.id %}"><i class="fas fa-eraser fa-1x"></i></a></p>
                 {% else %}
-                <p class="card-text mt-2 ml-2" style="text-align:left;">{{damgle.user}} : {{ damgle.content}}</p>
+                    <p class="card-text mt-2 ml-2" style="text-align:left;font-size:20px;">{{damgle.user}} : {{ damgle.content}}</p>
                 {% endif %}
                 {% empty %}
-                <p class="card-text" style="text-align:center;">담글이 없습니다.</p>
+                    <p class="card-text" style="text-align:center;">담글이 없습니다.</p>
                 {% endfor %}
             </div>
             <div class="card-body">
