@@ -15,13 +15,14 @@
                 <form action="{% url 'movies:like' movie.id %}" method="POST" style="display:inline-block">
                     {% csrf_token %}
                     <button style="border:0; background:none;">
-                        {% if is_like %}
-                        <i class="fas fa-heart fa-4x" style="color: #ed4956;"></i>
-                        {% else %}
-                        <i class="far fa-heart fa-4x" style="color: #ed4956; border:10;">
-                            <span class="badge badge-light"></span>
+
+                        <i 
+                        class="{% if is_like %}fas{% else %}far{% endif %}
+                            fa-heart fa-4x js-like-button"
+                        data-id="{{ movie.id }}"
+                        style="color:crimson;">
+                        
                         </i>
-                        {% endif %}
                     </button>
                 </form>
                 <li class="list-item" style="margin-top:0px;">평점 : <div class="userrating">{{movie.userRating}}</div>
@@ -43,14 +44,27 @@
         </div> {% endcomment %}
             <div class="mt-5 ml-5 mb-3">
         {% for review in movie.review_set.all %}
-            <p class="card-text mt-2 ml-2" style="text-align:left;">{{review.user}} : (평점 : {{ review.score }}) {{review.content}}</p>
+            <div class="row">
+            <div class="col-10">
+            <p class="card-text mt-2 ml-2" style="text-align:left;font-size:20px;">{{review.user}} : (평점 : {{ review.score }}) {{review.content}}</p>
+            </div>
+            {% if  user == review.user %}
+            <div class="col-1">
+            <form href="#"><i class="far fa-edit fa-2x"></i></form>
+            </div>
+            <div class="col-0.5">
+            <a href="{% url 'movies:delete_review' movie.id review.id %}"><i class="fas fa-eraser fa-2x"></i></a>
+            </div>
+            {% endif %}
+            </div>
         {% empty %}
         <p class="card-text" style="text-align:center;">댓글이 없습니다.</p>
         {% endfor %}
         </div>
         <div class="card-body">
             <div class="card-footer">
-                <form action="{% url 'movies:create_review' movie.id %}" method="POST">
+                {% load bootstrap4 %}
+                <form action="{% url 'movies:create_review' movie.id %}"method="POST">
                     {% csrf_token %}
                     {% bootstrap_form review_form %}
                         {% buttons %}
@@ -64,6 +78,7 @@
             img {
                 max-width: 100%;
                 height: auto !important;
+
             }
 
             .moviename {
@@ -93,4 +108,30 @@
                 border-radius: 25px;
             }
         </style>
+
+        <script>
+        const likeButtons = document.querySelectorAll('.js-like-button');
+
+        likeButtons.forEach((likeButton) => {
+            likeButton.addEventListener('click', function (event) {
+                const URL = `/insta/${event.target.dataset.id}/like/`;
+                axios.defaults.xsrfCookieName = 'csrftoken';
+                axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+                axios.post(URL)
+                    .then((res) => {
+                        if (res.data.liked) { // 지금 좋아요가 끝난거면
+                            event.target.classList.remove('far');
+                            event.target.classList.add('fas');
+                        }
+                        else { // 지금 좋아요를 해제했다면
+                            event.target.classList.remove('fas');
+                            event.target.classList.add('far');
+                        }
+                    })
+            });
+        });
+
+        
+        
+        </script>
         {% endblock body %}
