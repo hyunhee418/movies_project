@@ -119,7 +119,7 @@ def edit_user_image(request, user_id):
     })
 
 def test(request):
-    movies = Movie.objects.all()[50:141]
+    movies = Movie.objects.all()[:90]
     return render(request, 'accounts/choice.html', {
         'movies':movies
     })

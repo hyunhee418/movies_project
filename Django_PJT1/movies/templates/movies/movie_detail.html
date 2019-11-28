@@ -114,7 +114,7 @@
 
         likeButtons.forEach((likeButton) => {
             likeButton.addEventListener('click', function (event) {
-                const URL = `/insta/${event.target.dataset.id}/like/`;
+                const URL = `/movies/${event.target.dataset.id}/like/`;
                 axios.defaults.xsrfCookieName = 'csrftoken';
                 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
                 axios.post(URL)
