@@ -59,9 +59,9 @@ def movie_detail(request, movie_id):
 @login_required
 def search_movie(request):
     search_movie = request.GET.get('search_movie')
-    print(search_movie)
+    # print(search_movie)
     search_movies = Movie.objects.filter(movieName__contains=search_movie).distinct()
-    print(search_movies)
+    # print(search_movies)
     return render(request, 'movies/search_movie.html', {'search_movies': search_movies})
         
 @login_required
