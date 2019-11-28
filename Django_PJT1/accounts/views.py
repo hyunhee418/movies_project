@@ -49,11 +49,12 @@ def login(request):
         'form':form,
     })
 
+@login_required
 def logout(request):
     auth_logout(request)
-    return redirect('accounts:signup')
+    return redirect('accounts:login')
 
-
+@login_required
 @require_http_methods(['GET'])
 def user_page(request, user_id):
     user = get_object_or_404(User, id = user_id)
@@ -71,6 +72,7 @@ def user_page(request, user_id):
     #     
     # })
 
+@login_required
 @require_http_methods(['GET', 'POST'])
 def edit_user_page(request, user_id):
     user = get_object_or_404(User, id=user_id)
@@ -89,7 +91,7 @@ def edit_user_page(request, user_id):
         'form':form,
     })
     
-
+@login_required
 def edit_user_image(request, user_id):
     user = get_object_or_404(User, id=user_id)
     
@@ -150,7 +152,7 @@ def checked(request):
         # 추천 알고리즘
         movie = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[0]
         genre = get_object_or_404(Genre, id=movie.genre_id)
-        movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[1:11]
+        movies1 = Movie.objects.filter(genre_id=genre1).order_by('-userRating').distinct()[1:10]
         movies2 = Movie.objects.filter(genre_id=genre2).order_by('-userRating').distinct()[:9]
         # 취향 비슷한 사람 찾기
         users = []
@@ -181,4 +183,11 @@ def create_damgle(request, page_master_id):
         damgle.page_master = page_master
         damgle.save()
     return redirect('accounts:user_page', page_master.id)
-        
+
+
+@login_required
+def delete_damgle(request, page_master_id, damgle_id):
+    page_master_id = get_object_or_404(User, id=page_master_id)
+    damgle = get_object_or_404(Damgle, page_master_id=page_master_id.id, user_id=request.user.id, id=damgle_id)
+    damgle.delete()
+    return redirect('accounts:user_page', page_master_id.id)

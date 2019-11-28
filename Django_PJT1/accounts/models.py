@@ -10,7 +10,7 @@ from django_extensions.db.models import TimeStampedModel
 from movies.models import Genre
 
 from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFit
+from imagekit.processors import ResizeToFill
 
 class User(AbstractUser):
     nickname = models.CharField(max_length=30)
@@ -22,7 +22,7 @@ class Image(models.Model):
     # User.objects.get(id=1).image_set.file.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     file = ProcessedImageField(
-        processors=[ResizeToFit(600, 600, mat_color=(256, 256, 256))],
+        processors=[ResizeToFill(600, 600)],
         upload_to = 'user_image/images/',
         format='JPEG',
         options={'quality': 90},
