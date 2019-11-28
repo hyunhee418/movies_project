@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
-    <div class="card-columns">
-    {% if search_movies %}
-    {% for search_movie in search_movies %}
-        <div class="card my-6">
 
-        <ul>
+    {% if search_movies %}
+    <div class="card-columns container">
+    {% for search_movie in search_movies %}
+        <div class="card my-3 mb-3">
             <a href="{% url 'movies:movie_detail' search_movie.id %}">
                 <img src="{{search_movie.poster_url}}" class="d-block w-100 poster" alt="{{ search_movie.movieName }}-poster">
-        </ul>
         </div>
     {% endfor %}
-    {% endif %}
     </div>
+    {% endif %}
 {% endblock  %}
