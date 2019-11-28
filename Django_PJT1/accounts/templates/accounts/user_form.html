@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block body %}
-    <div class="container mt-10" style="text-align:center;margin-top:70px;">
+{% load bootstrap4 %}
 
+{% block body %}
+    <div class="container mt-5">
         <form method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit">
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-dark">
         </form>
     </div>
 {% endblock %}
