@@ -161,7 +161,10 @@ def checked(request):
             if sorted(genre_li) == sorted([max_idd1, max_idd2]) and user1.id != user.id:
                 users.append(user1)
         if not users:
-            users = User.objects.all()
+            for user2 in User.objects.all():
+                if user2.id != user.id:
+                    users.append(user2)
+                    print(user.id, user2.id)
         return render(request, 'movies/movie_list.html', {
             'movie': movie,
             'genre': genre,
