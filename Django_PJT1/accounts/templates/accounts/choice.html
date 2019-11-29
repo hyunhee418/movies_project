@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 <div style="text-align:center; margin-top:50px;">
-<div style="font-size:40px;margin-bottom:50px;">좋아하는 영화 10 개를 고르세요.</div>
+<div style="font-size:40px;margin-bottom:0px;">좋아하는 영화를 5개 이상 고르세요.</div>
+<div style="font-size:20px;margin-bottom:50px;color:#778899">준비 되었다면 맨 밑에 start</div>
 <div style="margin-right:150px;margin-left:150px;">
 <form action="{% url 'accounts:checked' %}" method="POST">
     {% csrf_token %}
@@ -38,25 +39,7 @@
 		</div>
 </footer>
 
-{% comment %} <script>
-    const  check_list = new Array();
-    for ( var i = 0; i <= 29; i++ ) {
-        check_list[i] = 0;
-    }
-    const send = function (movie_genres) {
-        for(movie_genre of movie_genres) {
-            console.log(movie_genre);
-        }
-    }
 
-    const posters = document.querySelectorAll('.poster');
-    posters.forEach(poster => poster.addEventListener('click', function () {
-        genre_id = this.dataset.id;
-        genre_id = Number(genre_id);
-        // this.check_list.forEach(function (1, ))
-        console.log(genre_id, typeof(genre_id), check_list);
-    }))
-</script> {% endcomment %}
 <style>
     img {
         max-width: 100%;
