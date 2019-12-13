@@ -297,11 +297,17 @@ def movie_list(request):
 
 
 
-## 5. 배포 서버 URL
+## 5. URL
 
-http://sonyeonhada-movie.herokuapp.com/signup
+#### 배포서버 URL
+
+https://quiet-beyond-76918.herokuapp.com/
 
 
+
+#### 발표자료 URL
+
+https://docs.google.com/presentation/d/e/2PACX-1vSo1S4w_RrYkt4bYaKy8pGektqbmtsDsPj3T8XZ11XYZ-gJAOIXE55zQUMiBbcHDaXotrQ0A-eqahdz/pub?start=false&loop=false&delayms=3000
 
 ## 6. 프로젝트를 마치며
 
