@@ -233,29 +233,29 @@ def movie_list(request):
 
 * 회원가입
 
-![이미지 003](./images/이미지 003.png)
+![image003](./images/image003.png)
 
 
 
 * 좋아하는 영화 선택 페이지
 
-![이미지 004](./images/이미지 004.png)
+![image004](./images/image004.png)
 
 
 
 * 모두 선택 후 start 버튼 누르면 회원 홈페이지
 
-![이미지 005](./images/이미지 009.png)
+![image005](./images/image009.png)
 
 
 
-![이미지 006](./images/이미지 008.png)
+![image006](./images/image008.png)
 
 
 
 * 하단에 알고리즘을 통해 도출한 `유저의 영화 장르 취향 기반 영화 추천` 과 `나와 비슷한 영화 취향을 가진 User list` 보여줌
 
-![이미지 007](./images/이미지 007.png)
+![image007](./images/image007.png)
 
 
 
@@ -273,11 +273,11 @@ def movie_list(request):
 
 
 
-![이미지 008](./images/이미지 006.png)
+![image008](./images/image006.png)
 
 
 
-![이미지 013](./images/이미지 013.png)
+![image013](./images/image013.png)
 
 
 
@@ -289,11 +289,11 @@ def movie_list(request):
 
 
 
-![이미지 009](./images/이미지 005.png)
+![image009](./images/image005.png)
 
 
 
-![이미지 011](./images/이미지 011.png)
+![image011](./images/image011.png)
 
 
 
