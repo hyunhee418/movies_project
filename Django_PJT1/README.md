@@ -12,11 +12,12 @@
 |                  영화 추천 알고리즘 구현                  |           페이지 구성 및 기획            |
 | user가 좋아요 하는 영화를 기반으로 추천하는 알고리즘 구현 |     영화 seed 데이터 생성(웹크롤링)      |
 |       user와 취향이 비슷한 user 목록 알고리즘 구현        |      accounts signup/login/out 기능      |
-|    movie_list / movie_detail 페이지 구현(좋아요 기능)     |     user_page의 user_image 변경 기능     |
+|          movie_list / movie_detail 페이지 구현            |     user_page의 user_image 변경 기능     |
 |                      영화 검색 기능                       |   user_page의 user 상세 정보 수정 기능   |
 |         영화 디테일 페이지 review 생성, 삭제 기능         | django_admin 관리자 영화, 유저 관리 기능 |
-|    user_page의 좋아요 누른 영화 slideshow 로 보여주기     |                    -                     |
+|                       좋아요 기능                        |                    -                     |
 |          user_page의 담벼락 댓글 생성, 삭제 기능          |                    -                     |
+|    user_page의 좋아요 누른 영화 slideshow 로 보여주기     |                    -                     |
 |                         CSS 전반                          |                    -                     |
 
 
