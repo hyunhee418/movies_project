@@ -32,7 +32,9 @@
                     chatSocket.onmessage = function (e) {
                         var data = JSON.parse(e.data);
                         var message = data['message'];
-                        document.querySelector('#chat-log').value += (message + '\n');
+                        if (user == request.user) {
+                        document.querySelector('#chat-log').value += (message + '\n');}
+                        else {document.querySelector('#chat-log').value += ('              ' + message + '\n');}
                     };
 
                     chatSocket.onclose = function (e) {
