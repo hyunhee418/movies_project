@@ -7,6 +7,7 @@ User = settings.AUTH_USER_MODEL
 
 class Genre(models.Model):
     name = models.CharField(max_length=20)
+    
 class Movie(models.Model):
     MovieCd = models.IntegerField()
     movieName = models.CharField(max_length=30)
