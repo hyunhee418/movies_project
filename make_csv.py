@@ -24,7 +24,7 @@ for page in range(21, 41):
     text = BeautifulSoup(response, 'html.parser')
     rows = text.select('.tit5')
     for row in rows:
-        
+        print(row)
         # 1. 영화코드 가져오기 >> 네이버 영화 상세 페이지로 가서 다 긁어올 것임
         try:
             target = str(row.select_one('div > a'))
