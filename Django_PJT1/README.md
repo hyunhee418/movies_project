@@ -244,11 +244,13 @@ def movie_list(request):
 
 
 
-* 모두 선택 후 start 버튼 누르면 회원 홈페이지
+* 모두 선택 후 start 버튼 누르면 회원가입 완료
 
 ![image005](./images/image009.png)
 
 
+
+* Home page
 
 ![image006](./images/image008.png)
 
